@@ -3,8 +3,9 @@
 
 provider "registry.terraform.io/azure/azapi" {
   version     = "2.5.0"
-  constraints = ">= 1.13.0, ~> 2.0, < 3.0.0"
+  constraints = "~> 2.0"
   hashes = [
+    "h1:/jBZRd/dvuFm1CxS+WKHuXm4H++fkUHAvoZdlm4oScw=",
     "h1:Y22DrUlUHsHJPyo+2lqT+zmw7HRnlsAVeo7GvMVuDDM=",
     "zh:24a2ebfec4a79b7ef122e07afe6ddda51ce91b3dbed7007757b9c53511976396",
     "zh:2a26868f8243666b6d0cd29ea5d1b1ecfedb1bbccc3801d383ab7a3f7930aa69",
@@ -25,6 +26,7 @@ provider "registry.terraform.io/azure/modtm" {
   version     = "0.3.5"
   constraints = "~> 0.3"
   hashes = [
+    "h1:RmCHYU3U3jDGYruN3Q7PiQqwqg7U4WP3dUDbx1PsyQ4=",
     "h1:d1HmbFvkZqm/Prpg1lSMouu6oF1seYJpbHGWTrmbreY=",
     "zh:02a54109f2bd30a089a0681eaba8ef9d30b0402a51795597ee7b067f04952417",
     "zh:0a15492a7257a0979d1f1d501168d1a38ec8c65b11d89d9423349f143d7b7e67",
@@ -43,9 +45,10 @@ provider "registry.terraform.io/azure/modtm" {
 
 provider "registry.terraform.io/hashicorp/azurerm" {
   version     = "4.36.0"
-  constraints = ">= 3.71.0, >= 3.116.0, >= 4.0.0, ~> 4.0, < 5.0.0"
+  constraints = ">= 3.71.0, >= 4.0.0, ~> 4.0, < 5.0.0"
   hashes = [
     "h1:+a7udfuQGGpIuVE8MD/5nEMGTy1+CP4kVZ72MPR55iM=",
+    "h1:62DjN6+oXv/KwL5901S56hiBU+bxYr1L/cJjN0CyMy0=",
     "zh:0c127e6337e0259657066320c78c2f41fa85f0c380a338fd73745bb347da8339",
     "zh:13efcd43aa5aedaa587f6d91eab147612fa07874884e6f21704fa974e01c3004",
     "zh:19670d160b255b7af98e7bbbf9a2f5f40f32637413f56f9c4735ca4aa6cc1fe1",
@@ -63,9 +66,10 @@ provider "registry.terraform.io/hashicorp/azurerm" {
 
 provider "registry.terraform.io/hashicorp/random" {
   version     = "3.7.2"
-  constraints = ">= 3.3.2, ~> 3.5, ~> 3.6"
+  constraints = ">= 3.3.2, >= 3.5.0, ~> 3.5, ~> 3.6, < 4.0.0"
   hashes = [
     "h1:356j/3XnXEKr9nyicLUufzoF4Yr6hRy481KIxRVpK0c=",
+    "h1:KG4NuIBl1mRWU0KD/BGfCi1YN/j3F7H4YgeeM7iSdNs=",
     "zh:14829603a32e4bc4d05062f059e545a91e27ff033756b48afbae6b3c835f508f",
     "zh:1527fb07d9fea400d70e9e6eb4a2b918d5060d604749b6f1c361518e7da546dc",
     "zh:1e86bcd7ebec85ba336b423ba1db046aeaa3c0e5f921039b3f1a6fc2f978feab",

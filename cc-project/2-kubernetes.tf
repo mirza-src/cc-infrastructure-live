@@ -47,6 +47,18 @@ module "kubernetes" {
     }
   }
 
+  node_pools = {
+   spot = {
+      name                  = "spot"
+      vm_size               = "Standard_D2as_v4"
+      node_count            = 1
+      
+      priority              = "Spot"
+      eviction_policy      = "Delete"
+      spot_max_price       = -1
+   }
+  }
+
   managed_identities = {
     system_assigned = true
   }
