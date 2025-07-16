@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/PierreBeucher/novops/refs/tags/v0.19.0/docs/schema/config-schema.json
+
+environments:
+  default:
+    variables:
+      # These variables are used by the terraform provider to authenticate with Azure
+      # These are not required (terraform will use the Azure CLI credentials if not set)
+      - name: ARM_TENANT_ID
+        value: a16549a0-b017-4a82-9bb9-a545a6518de9
+      - name: ARM_SUBSCRIPTION_ID
+        value: 9a3616bd-69cc-407c-b4c0-473e27174699
+      - name: ARM_CLIENT_ID
+        value: ea93c1c3-e046-45f8-a153-3789340e3384
+      - name: ARM_CLIENT_SECRET
+        value:
+          azure_keyvault_secret:
+            vault: kv-infra-gwc
+            name: infrastructure-owner-client-secret
+
+      # These variables are used by the terraform provider to authenticate with Kubernetes through an Azure Identiy
+      # These must be provided in order to deploy the Kubernetes resources
+      - name: TF_VAR_azure_tenant_id
+        value: a16549a0-b017-4a82-9bb9-a545a6518de9
+      - name: TF_VAR_azure_client_id
+        value: ea93c1c3-e046-45f8-a153-3789340e3384
+      - name: TF_VAR_azure_client_secret
+        value:
+          azure_keyvault_secret:
+            vault: kv-infra-gwc
+            name: infrastructure-owner-client-secret
