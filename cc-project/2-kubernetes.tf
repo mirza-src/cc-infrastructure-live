@@ -20,7 +20,7 @@ module "kubernetes" {
     tenant_id          = data.azurerm_client_config.this.tenant_id
   }
 
-  // Configure cilium as the CNI plugin for Kubernetes networking ( cause we like it :) )
+  # Configure cilium as the CNI plugin for Kubernetes networking ( cause we like it :) )
   network_profile = {
     network_plugin      = "azure"
     network_dataplane   = "cilium"
@@ -30,7 +30,7 @@ module "kubernetes" {
     dns_service_ip      = "10.1.0.10"
   }
 
-  // Using a single smallest possible node as the default system node pool to save cost (this cannot be a spot instance on Azure)
+  # Using a single smallest possible node as the default system node pool to save cost (this cannot be a spot instance on Azure)
   default_node_pool = {
     name           = "default"
     max_pods       = 250
@@ -38,6 +38,13 @@ module "kubernetes" {
     vm_size        = "Standard_B2pls_v2" # Cheapest VM size available on Azure for Kubernetes
     os_sku         = "Ubuntu"
     vnet_subnet_id = module.virtual_network.subnets.k8s_nodes.resource_id
+
+    # These values are default but have been added to avoid unexpected drifts
+    upgrade_settings = {
+      drain_timeout_in_minutes      = 0
+      max_surge                     = "10%"
+      node_soak_duration_in_minutes = 0
+    }
   }
 
   managed_identities = {
@@ -45,7 +52,8 @@ module "kubernetes" {
   }
 
   role_assignments = {
-    owner = { // Allow the current user to manage the Kubernetes cluster
+    # Allow the current user to manage the Kubernetes cluster
+    owner = {
       role_definition_id_or_name = "Azure Kubernetes Service RBAC Cluster Admin"
       principal_id               = data.azurerm_client_config.this.object_id
       scope                      = module.kubernetes.resource_id
