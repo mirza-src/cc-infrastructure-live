@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap
+  namespace: argocd
+spec:
+  project: default
+
+  destination:
+    name: in-cluster
+    namespace: argocd
+
+  sources:
+    - repoURL: https://github.com/mirza-src/cc-argocd-gitops.git
+      path: .
+      directory:
+        recurse: false
+
+  syncPolicy:
+    automated: {}
