@@ -34,8 +34,8 @@ module "kubernetes" {
   default_node_pool = {
     name           = "default"
     max_pods       = 250
-    node_count     = 1
-    vm_size        = "Standard_B2pls_v2" # Cheapest VM size available on Azure for Kubernetes
+    node_count     = 1 # No auto-scaling to control costs
+    vm_size        = "Standard_B2pls_v2" # Cheapest VM size available on Azure for Kubernetes (but no Ephemeral OS disk)
     os_sku         = "Ubuntu"
     vnet_subnet_id = module.virtual_network.subnets.k8s_nodes.resource_id
 
@@ -48,15 +48,20 @@ module "kubernetes" {
   }
 
   node_pools = {
-   spot = {
-      name                  = "spot"
-      vm_size               = "Standard_D2as_v4"
-      node_count            = 1
-      
-      priority              = "Spot"
-      eviction_policy      = "Delete"
-      spot_max_price       = -1
-   }
+    spot = {
+      name       = "spot"
+      vm_size    = "Standard_D2as_v4"
+      node_count = 1 # No auto-scaling due to quota limits
+
+      priority        = "Spot"
+      eviction_policy = "Delete"
+      spot_max_price  = -1
+
+      # Using Ephemeral OS disk for cost efficiency
+      os_disk_type    = "Ephemeral"
+      os_disk_size_gb = 50
+      os_sku          = "Ubuntu"
+    }
   }
 
   managed_identities = {
